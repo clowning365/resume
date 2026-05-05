@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Luis Elijah Cavada | Digital Creator & Developer</title>
+  <style>
+    :root {
+      --primary: #00ffea;
+      --secondary: #ff00aa;
+      --bg: #0a0a1f;
+      --card: rgba(255,255,255,0.05);
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--bg);
+      color: #e0e0ff;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    canvas#particles {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -1;
+      opacity: 0.6;
+    }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      backdrop-filter: blur(12px);
+      background: rgba(10,10,31,0.8);
+      border-bottom: 1px solid rgba(0,255,234,0.2);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav a {
+      color: #e0e0ff;
+      text-decoration: none;
+      margin-left: 2rem;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--primary); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding-top: 80px;
+    }
+
+    .hero-content h1 {
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      margin-bottom: 1rem;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-photo {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 3px solid var(--primary);
+      margin-top: 2rem;
+      object-fit: cover;
+      box-shadow: 0 0 20px var(--primary);
+    }
+
+    .typing {
+      font-size: 1.8rem;
+      color: var(--primary);
+      min-height: 40px;
+    }
+
+    section {
+      padding: 80px 8%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      text-align: center;
+      position: relative;
+    }
+    h2::after {
+      content: '';
+      width: 60px;
+      height: 3px;
+      background: var(--primary);
+      position: absolute;
+      bottom: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .glass-card {
+      background: var(--card);
+      backdrop-filter: blur(16px);
+      border: 1px solid rgba(0,255,234,0.15);
+      border-radius: 20px;
+      padding: 2rem;
+      transition: transform 0.4s, box-shadow 0.4s;
+    }
+    .glass-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0,255,234,0.15);
+    }
+
+    .skills-grid, .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .skill-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      position: relative;
+      margin: 0 auto 1.5rem;
+      background: conic-gradient(var(--primary) 0% var(--percent), #1a1a3a var(--percent) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .skill-circle span {
+      background: var(--bg);
+      width: 115px;
+      height: 115px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+
+    .project-card {
+      min-height: 250px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-form input, .contact-form textarea {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(0,255,234,0.2);
+      padding: 1rem;
+      color: white;
+      border-radius: 10px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 400px;
+      border-radius: 20px;
+      margin-top: 2rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      border-top: 1px solid rgba(0,255,234,0.2);
+      color: #888;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 30px;
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      border-radius: 50px;
+      text-decoration: none;
+      margin-top: 1rem;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .btn:hover {
+      background: var(--primary);
+      color: #0a0a1f;
+      box-shadow: 0 0 20px rgba(0,255,234,0.4);
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="particles"></canvas>
+
+  <header>
+    <h2 style="color:var(--primary); font-weight:300; margin:0; font-size:1.5rem;">CSIT-201</h2>
+    <nav>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Hi, I'm Luis Elijah Cavada</h1>
+      <p class="typing" id="typing"></p>
+      <p style="max-width:600px; margin:1rem auto; opacity:0.9;">
+        Find out more about me.
+      </p>
+      <div class="hero-photo-container">
+        <img src="pfp.PNG" alt="Luis Elijah Cavada" class="hero-photo">
+      </div>
+      <br>
+      <a href="resume_example (1).docx" download class="btn">Download Résumé</a>
+    </div>
+  </section>
+
+  <section id="about">
+    <h2>About Me</h2>
+    <div class="glass-card" style="max-width:800px; margin:0 auto; text-align:center;">
+      <p style="font-size:1.2rem;">
+        I'm a 1st year BSIT Full stack developer, hoping to make a change.
+        My goal is to continue my journey as a website developer in the near future.
+        God is good all the time.
+      </p>
+    </div>
+  </section>
+
+  <section id="skills">
+  <h2>My Skills</h2>
+  <div class="skills-grid">
+    
+    <!-- HTML Skill -->
+    <div class="glass-card" style="text-align:center;">
+      <div class="skill-circle" style="--percent:50%;">
+        <span>50%</span>
+      </div>
+      <h3>HTML</h3>
+      <p>Structure & SEO</p>
+    </div>
+
+    <!-- JavaScript Skill -->
+    <div class="glass-card" style="text-align:center;">
+      <div class="skill-circle" style="--percent:50%;">
+        <span>50%</span>
+      </div>
+      <h3>JavaScript</h3>
+      <p>Logic & Interactivity</p>
+    </div>
+
+    <!-- C Programming Skill -->
+    <div class="glass-card" style="text-align:center;">
+      <div class="skill-circle" style="--percent:50%;">
+        <span>50%</span>
+      </div>
+      <h3>C Language</h3>
+      <p>System & Fundamentals</p>
+    </div>
+
+  </div>
+</section>
+
+  <section id="projects">
+    <h2>My Projects</h2>
+    <div class="portfolio-grid">
+      <div class="project-card glass-card">
+        <h3>Activity 1</h3>
+        <a href="activity1.html" target="_blank" class="btn">View Project</a>
+      </div>
+      <div class="project-card glass-card">
+        <h3>Activity 2</h3>
+        <a href="activity2.html" target="_blank" class="btn">View Project</a>
+      </div>
+      <div class="project-card glass-card">
+        <h3>Activity 3</h3>
+        <a href="activity3.html" target="_blank" class="btn">View Project</a>
+      </div>
+      <div class="project-card glass-card">
+        <h3>Activity 4</h3>
+        <a href="activity4.html" target="_blank" class="btn">View Project</a>
+      </div>
+      <div class="project-card glass-card">
+        <h3>Activity 5-6</h3>
+        <p>WORST WEBSITE EVER</p>
+        <a href="website.html" target="_blank" class="btn">View Project</a>
+      </div>
+      <div class="project-card glass-card">
+        <h3>Activity 7</h3>
+        <p>Digital Calendar/Clock</p>
+        <a href="activity7.html" target="_blank" class="btn">View Project</a>
+      </div>
+      <div class="project-card glass-card">
+        <h3>Activity 8</h3>
+        <p>Alert box</p>
+        <a href="activity8.html" target="_blank" class="btn">View Code</a>
+      </div>
+      <div class="project-card glass-card">
+        <h3>Activity 9</h3>
+        <p>Prompt box</p>
+        <a href="activity9.html" target="_blank" class="btn">View Code</a>
+      </div>
+      <div class="project-card glass-card">
+        <h3>Activity 10</h3>
+        <p>Arithmetic Calculator</p>
+        <a href="activity10.html" target="_blank" class="btn">View Project</a>
+      </div>
+
+      <div class="project-card glass-card">
+        <h3>Activity 11</h3>
+        <p>Loops</p>
+        <a href="activity11.html" target="_blank" class="btn">View Project</a>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Get in Touch</h2>
+    <div class="glass-card">
+      <form class="contact-form">
+        <input type="text" placeholder="Name" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Message" rows="5" required></textarea>
+        <button type="submit" class="btn">Send Message</button>
+      </form>
+    </div>
+
+    <h2 style="margin-top: 4rem;">Find Me Here</h2>
+    <div class="map-container">
+      <iframe 
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3925.753335552341!2d123.8745677!3d10.297495!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33a99c1050a496b7%3A0xc48c03975c441496!2sANCAV%20Industrial%20Supplies!5e0!3m2!1sen!2sph!4v1715000000000!5m2!1sen!2sph" 
+        style="border:0;" allowfullscreen="" loading="lazy">
+      </iframe>
+    </div>
+    
+    <div style="text-align:center; margin-top:2rem;">
+      <p style="font-size:1.1rem; color:var(--primary);">hello@Luiselijah.dev</p>
+      <a href="https://github.com/clowning365" style="color:var(--primary); text-decoration:none; font-size:1.2rem;">GitHub</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2026 Cavada • Sponsored by C.I.T</p>
+  </footer>
+
+  <script>
+    // Typing effect
+    const texts = ["Full Stack Developer", "Creative Coder", "Digital Artist", "Problem Solver"];
+    let count = 0;
+    let index = 0;
+    let currentText = '';
+    const typingElement = document.getElementById('typing');
+
+    function type() {
+      if (count === texts.length) count = 0;
+      currentText = texts[count];
+      
+      typingElement.textContent = currentText.slice(0, ++index);
+
+      if (index === currentText.length) {
+        count++;
+        index = 0;
+        setTimeout(type, 2000);
+      } else {
+        setTimeout(type, 80);
+      }
+    }
+    type();
+
+    // Particle background
+    const canvas = document.getElementById('particles');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    class Particle {
+      constructor() {
+        this.init();
+      }
+      init() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.size = Math.random() * 2 + 1;
+        this.speedX = Math.random() * 0.5 - 0.25;
+        this.speedY = Math.random() * 0.5 - 0.25;
+      }
+      update() {
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+      }
+      draw() {
+        ctx.fillStyle = '#00ffea';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    for (let i = 0; i < 80; i++) particles.push(new Particle());
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => { p.update(); p.draw(); });
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // Smooth scroll
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        document.querySelector(link.getAttribute('href')).scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+  </script>
+</body>
+</html>
