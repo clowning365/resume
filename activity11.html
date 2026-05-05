@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vibrant Loop Creator</title>
+    <style>
+        :root {
+            --bg-color: #000000;
+            --card-bg: #000000;
+            --for-color: #22d3ee;
+            --while-color: #fbbf24;
+            --do-color: #f472b6;
+            --text-main: #f8fafc;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 25px;
+            width: 300px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            transition: transform 0.3s ease;
+            border-top: 5px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Unique Glows */
+        .card.for { border-color: var(--for-color); box-shadow: 0 10px 20px -10px var(--for-color); }
+        .card.while { border-color: var(--while-color); box-shadow: 0 10px 20px -10px var(--while-color); }
+        .card.do { border-color: var(--do-color); box-shadow: 0 10px 20px -10px var(--do-color); }
+
+        h2 {
+            text-align: center;
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+
+        .for h2 { color: var(--for-color); }
+        .while h2 { color: var(--while-color); }
+        .do h2 { color: var(--do-color); }
+
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            background: #0f172a;
+            color: white;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #64748b;
+        }
+
+        .btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: opacity 0.2s;
+        }
+
+        button:active { transform: scale(0.98); }
+
+        .btn-show { background: #ffffff; color: rgb(0, 0, 0); }
+        .btn-clear { background: #ffffff; color: rgb(0, 0, 0); }
+
+        .output-box {
+            margin-top: 20px;
+            background: #020617;
+            border-radius: 8px;
+            padding: 10px;
+            min-height: 40px;
+            max-height: 150px;
+            overflow-y: auto;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.85rem;
+            border: 1px solid #1e293b;
+        }
+    </style>
+</head>
+<body>
+
+
+    <div class="container">
+        <!-- For Loop Card -->
+        <div class="card for">
+            <h2>For Loop</h2>
+            <div class="input-group">
+                <label>Enter number:</label>
+                <input type="number" id="forNum" placeholder="e.g. 5">
+            </div>
+            <div class="input-group">
+                <label>Enter text:</label>
+                <input type="text" id="forText" placeholder="Hello">
+            </div>
+            <div class="btn-container">
+                <button class="btn-show" onclick="runFor()">Show</button>
+                <button class="btn-clear" onclick="clearBox('for')">Clear</button>
+            </div>
+            <div class="output-box" id="forOut"></div>
+        </div>
+
+        <!-- While Loop Card -->
+        <div class="card while">
+            <h2>While Loop</h2>
+            <div class="input-group">
+                <label>Enter number:</label>
+                <input type="number" id="whileNum" placeholder="e.g. 3">
+            </div>
+            <div class="input-group">
+                <label>Enter text:</label>
+                <input type="text" id="whileText" placeholder="Hi">
+            </div>
+            <div class="btn-container">
+                <button class="btn-show" onclick="runWhile()">Show</button>
+                <button class="btn-clear" onclick="clearBox('while')">Clear</button>
+            </div>
+            <div class="output-box" id="whileOut"></div>
+        </div>
+
+        <!-- Do-While Loop Card -->
+        <div class="card do">
+            <h2>Do-While Loop</h2>
+            <div class="input-group">
+                <label>Enter number:</label>
+                <input type="number" id="doNum" placeholder="e.g. 4">
+            </div>
+            <div class="input-group">
+                <label>Enter text:</label>
+                <input type="text" id="doText" placeholder="Yo">
+            </div>
+            <div class="btn-container">
+                <button class="btn-show" onclick="runDo()">Show</button>
+                <button class="btn-clear" onclick="clearBox('do')">Clear</button>
+            </div>
+            <div class="output-box" id="doOut"></div>
+        </div>
+    </div>
+
+    <script>
+        function runFor() {
+            const num = document.getElementById('forNum').value;
+            const text = document.getElementById('forText').value;
+            const out = document.getElementById('forOut');
+            out.innerHTML = "";
+            
+            for(let i = 0; i < num; i++) {
+                out.innerHTML += (i + 1) + ". " + text + "<br>";
+            }
+        }
+
+        function runWhile() {
+            const num = document.getElementById('whileNum').value;
+            const text = document.getElementById('whileText').value;
+            const out = document.getElementById('whileOut');
+            out.innerHTML = "";
+            
+            let i = 0;
+            while(i < num) {
+                out.innerHTML += (i + 1) + ". " + text + "<br>";
+                i++;
+            }
+        }
+
+        function runDo() {
+            const num = document.getElementById('doNum').value;
+            const text = document.getElementById('doText').value;
+            const out = document.getElementById('doOut');
+            out.innerHTML = "";
+            
+            let i = 0;
+            if (num > 0) {
+                do {
+                    out.innerHTML += (i + 1) + ". " + text + "<br>";
+                    i++;
+                } while (i < num);
+            }
+        }
+
+        function clearBox(type) {
+            document.getElementById(type + 'Num').value = "";
+            document.getElementById(type + 'Text').value = "";
+            document.getElementById(type + 'Out').innerHTML = "";
+        }
+    </script>
+</body>
+</html>

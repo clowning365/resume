@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Student Profile Form</title>
+</head>
+
+<body style="margin:0; font-family:Arial; background:linear-gradient(120deg,#1e293b,#0f172a); color:white;">
+
+<div style="
+    width:350px;
+    margin:60px auto;
+    padding:25px;
+    border-radius:15px;
+    background:rgba(255,255,255,0.05);
+    box-shadow:0 0 25px rgba(0,0,0,0.5);
+">
+
+<h2 style="text-align:center; margin-bottom:20px;">Student Profile</h2>
+
+<form>
+
+<label>Full Name</label><br>
+<input type="text" placeholder="Enter your name" style="width:100%; padding:8px; margin:8px 0 15px; border:none; border-radius:8px; background:#334155; color:white;"><br>
+
+<label>Nickname</label><br>
+<input type="text" placeholder="Optional" style="width:100%; padding:8px; margin:8px 0 15px; border:none; border-radius:8px; background:#334155; color:white;"><br>
+
+<label>Age</label><br>
+<input type="number" style="width:100%; padding:8px; margin:8px 0 15px; border:none; border-radius:8px; background:#334155; color:white;"><br>
+
+<label>Gender</label><br>
+<input type="radio" name="g"> Male
+<input type="radio" name="g"> Female
+<input type="radio" name="g"> Prefer not to say
+<br><br>
+
+<label>Choose Program</label><br>
+<select style="width:100%; padding:8px; margin:10px 0 15px; border:none; border-radius:8px; background:#334155; color:white;">
+  <option>BSCS</option>
+  <option>BSIT</option>
+  <option>BSAI</option>
+  <option>BSCE</option>
+</select>
+
+<label>Skills (select multiple)</label><br>
+<input type="checkbox"> HTML
+<input type="checkbox"> CSS
+<input type="checkbox"> JavaScript
+<input type="checkbox"> Python
+<br><br>
+
+<label>Short Bio</label><br>
+<textarea rows="3" placeholder="Tell something about you..."
+style="width:100%; padding:8px; border:none; border-radius:8px; background:#334155; color:white;"></textarea>
+
+<br><br>
+
+<div style="display:flex; justify-content:space-between;">
+<button type="submit" style="padding:10px 20px; border:none; border-radius:8px; background:#38bdf8; cursor:pointer;">Submit</button>
+
+<button type="reset" style="padding:10px 20px; border:none; border-radius:8px; background:#64748b; cursor:pointer;">Reset</button>
+</div>
+
+</form>
+
+</div>
+
+</body>
+</html>

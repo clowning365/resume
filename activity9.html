@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activity 9 - JavaScript Prompt</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 80px;
+        }
+        h2 {
+            color: #333;
+        }
+        button {
+            padding: 12px 25px;
+            font-size: 18px;
+            background-color: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0b7dda;
+        }
+        #demo {
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            min-height: 30px;
+        }
+    </style>
+
+    <script>
+        function myFunction() {
+            let fullName = prompt("Please enter your full name:");
+
+            let txt;
+
+            if (fullName == null || fullName.trim() === "") {
+                txt = "<span style='color:red;'>The field is required!</span>";
+            } else {
+                txt = "Hello, <strong>" + fullName + "</strong>! How are you today?";
+            }
+
+            document.getElementById("demo").innerHTML = txt;
+        }
+    </script>
+</head>
+<body>
+
+    <h2>JavaScript Prompt Box</h2>
+    <p>Click the button and enter your name.</p>
+    
+    <button onclick="myFunction()">Click here!</button>
+    
+    <p id="demo"></p>
+
+</body>
+</html>

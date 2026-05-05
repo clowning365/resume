@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Instagram Reels - Products</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color:rgb(95, 71, 71);
+            margin: 0;
+        }
+        /* HEADER */
+        .header {
+            background: linear-gradient(to right, #405DE6, #833AB4, #FFDC80, #C13584, #F56040);
+            color: rgb(0, 0, 0);
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .header h1 {
+            font-size: 38px;
+            letter-spacing: 1px;
+        }
+
+        .header p {
+            margin-top: 10px;
+            font-size: 15px;
+        }
+
+        .header span {
+            font-weight: bold;
+        }
+
+        /* NAVBAR */
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+        }
+
+        .navbar a {
+            float: left;
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            display: block;
+            font-size: 15px;
+        }
+
+        .navbar a:hover {
+            background-color: #555;
+        }
+
+        /* REMOVED: .navbar a.active CSS rule to eliminate the highlight[cite: 1] */
+
+        /* MAIN CONTENT */
+        .main-content {
+            padding: 20px;
+            color: white;
+            text-align: center;
+        }
+
+        .product-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .product {
+            background-color: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            border: 1px solid #444;
+        }
+
+        /* TRANSACTION BUTTONS[cite: 1] */
+        .buy-btn {
+            background-color: #F56040;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s ease, transform 0.1s;
+        }
+
+        .buy-btn:hover {
+            background-color: #C13584;
+        }
+
+        .buy-btn:active {
+            transform: scale(0.95);
+        }
+
+        .footer {
+            height: 60px;
+            background-color: #333;
+            color: #777;
+            text-align: center;
+            line-height: 60px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>INSTAGRAM REELS</h1>
+        <p>Where <span>DESPAIR</span> comes to play.</p>
+    </div>
+
+    <div class="navbar">
+        <a href="home.html">Home</a>
+        <!-- REMOVED: class="active" from the Products link[cite: 1] -->
+        <a href="product.html">Products</a>
+        <a href="about us.html">About Us</a>
+        <a href="Contact us.html">Contact Us</a>
+    </div>
+
+    <div class="main-content">
+        <h2>Our cursed products</h2>
+        
+        <div class="product-list">
+            <div class="product">
+                <img src="3a5def06-fb7b-48e5-bc9c-01ff3758e8c6.gif" width="200">
+                <p>Bear — P500</p>
+                <button class="buy-btn" onclick="alert('Transaction Initiated for Bear!')">Purchase</button>
+            </div>
+
+            <div class="product">
+                <img src="a0460910-7d20-4a46-943c-51de41bb5c28.jpg" width="200">
+                <p>Expired hope (limited edition) — P500</p>
+                <button class="buy-btn" onclick="alert('Transaction Initiated for Expired Hope!')">Purchase</button>
+            </div>
+
+            <div class="product">
+                <img src="10b25507-8ffb-4c3d-8fdd-78b77ab46c7f.gif" width="200">
+                <p>Skeleton banging shield — P500</p>
+                <button class="buy-btn" onclick="alert('Transaction Initiated for Skeleton!')">Purchase</button>
+            </div>
+
+            <div class="product">
+                <img src="7001127c-19d5-4416-8fe0-9b940883a0cc.jpg" width="200">
+                <p>Flight car — P500</p>
+                <button class="buy-btn" onclick="alert('Transaction Initiated for Flight Car!')">Purchase</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2026 Cursed Reels Inc.</p>
+    </div>
+
+</body>
+</html>
